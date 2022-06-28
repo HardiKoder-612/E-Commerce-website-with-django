@@ -69,7 +69,7 @@ padding-right: 0;
               <div class="card-body">
                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                 <p class="card-text">{{i.desc|slice:"0:45"}}...</p>
-                <p class="card-text">Price: Rs. {{i.price}}</p>
+                <p class="card-text"id="pricepr{{i.id}}">Price: Rs. {{i.price}}</p>
                 <span id="divpr{{i.id}}" class="divpr">
                 <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
               </span>
@@ -136,9 +136,10 @@ $('.divpr').on('click', 'button.cart', function() {
         
     } else {
         qty = 1;
-        nme = document.getElementById('name'+idstr).innerHTML
-        cart[idstr] = [qty, nme];
-
+        nme = document.getElementById('name'+idstr).innerHTML;
+        price = document.getElementById('price'+idstr).innerHTML.slice(11);
+        cart[idstr] = [qty, nme, price];
+        console.log(cart);
     }
     updateCart(cart);
 });
