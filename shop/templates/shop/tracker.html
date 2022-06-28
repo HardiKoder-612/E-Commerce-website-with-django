@@ -30,7 +30,7 @@
 {%endblock%}
 
 {% block js %}
-
+<script>
 $('#trackerForm').submit(function(event) {
     $('#items').empty();
     var formData = {
@@ -65,4 +65,5 @@ $('#trackerForm').submit(function(event) {
         });
     event.preventDefault();
 });
+</script>
 {% endblock %}

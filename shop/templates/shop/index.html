@@ -119,7 +119,7 @@ padding-right: 0;
 {%endblock%}
 
 {%block js%}
-
+<script>
 
 if (localStorage.getItem('cart') == null) {
     var cart = {};
@@ -197,4 +197,5 @@ $('.divpr').on("click", "button.plus", function() {
     document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
     updateCart(cart);
 });
+</script>
 {%endblock%}

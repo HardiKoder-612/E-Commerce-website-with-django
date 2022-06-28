@@ -59,7 +59,7 @@
 {%endblock%}
 
 {%block js%}
-
+<script>
 if (localStorage.getItem('cart') == null) {
 var cart = {};
 } else {
@@ -92,4 +92,5 @@ alert('Thanks for ordering with us. Your order id is {{id}}. Use it to track you
 localStorage.clear();
 document.location="/shop";
 {%endif%}
+</script>
 {%endblock%}
