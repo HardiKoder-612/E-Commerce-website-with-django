@@ -1,40 +1,38 @@
 {% extends 'blog/basic.html' %}
 {% block body %}
 <div class="container">
-<div class="row g-5 my-4">
-    <div class="col-md-8">
-      <h3 class="pb-4 mb-4 fst-italic border-bottom">
-Title      </h3>
+    <div class="row g-5 my-4">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">{{post.title}}</h3>
+            <p class="blog-post-meta">{{post.pub_date}}</p>
 
-      <article class="blog-post">
-        <h2 class="blog-post-title mb-1 mt-4">Sample blog post</h2>
-        
-        <h2>Heading</h2>
-        <p>Content</p>
-        <h3>Sub-heading</h3>
-        <p>content of sub</p>
-        
-      </article>
+            <article class="blog-post">
+                <h2 class="blog-post-title mb-1 mt-4">{{post.head0}}</h2>
+                <p>{{post.chead0}}</p>
+                <h3>{{post.head1}}</h3>
+                <p>{{post.chead1}}</p>
+                <h5>{{post.head2}}</h5>
+                <p>{{post.chead2}}</p>
+            </article>
 
-    </div>
-
-    <div class="col-md-4 mt-4">
-      <div class="position-sticky" style="top: 2rem;">
-        <div class="p-4 mb-3 bg-light rounded">
-          <h4 class="fst-italic">About</h4>
-          <p class="mb-0">OurKarts is like a <em> friend</em> to you which will tell or guide you to which best product you should buy in each category like footware, electronics etc.</p>
         </div>
 
-        
-        <div class="p-4">
-          <h4 class="fst-italic">Contact Us On: OurKarts.com</h4>
-          <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
-          </ol>
+        <div class="col-md-4 mt-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">About</h4>
+                    <p class="mb-0">OurKarts is like a <em> friend</em> to you which will tell or guide you to which best product you should buy in each category like footware, electronics etc.</p>
+                </div>
+
+                <div class="p-4">
+                    <h4 class="fst-italic">Contact Us On: OurKarts.com</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-{% endblock %}
+    {% endblock %}

@@ -2,9 +2,7 @@
  {% block body %}
 <!--    <div class="container mt-3"  style="display:flex">-->
     <div class="container mt-3">
-    {% for post,range,nSlides in allposts %}
-
-        {%for i in post%}
+        {%for i in myposts%}
         <div class="row my-2">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -12,7 +10,7 @@
           <h3 class="mb-0">{{i.title}}</h3>
           <div class="mb-1 text-muted">{{i.pub_date}}</div>
           <p class="card-text mb-auto">{{i.chead0}}</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          <a href="blogpost/{{i.id}}" class="stretched-link">Continue reading</a>
         </div>
         <div class="col-auto d-none d-lg-block">
             <img src='/media/{{i.thumbnail}}' width="200" height="250" alt="...">
@@ -36,8 +34,10 @@
 <!--      </div>-->
 <!--    </div>-->
   </div>
-        {% endfor %}
-        {% endfor %}
+        {% if forloop.counter|divisibleby:2 %}
+        </div><div class="row my-2">
+    {% endif %}
+    {% endfor %}
     </div>
 
 {%endblock%}
