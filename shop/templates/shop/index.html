@@ -1,11 +1,13 @@
 {% extends 'shop/basic.html' %}
 {% block title%}OurKarts:Best e-commerce website{% endblock%}
 {% block css %}
-<style>
+
 .col-md-3
 {
 display: inline-block;
 margin-left:-4px;
+width: 100%;
+height: auto;
 }
 .carousel-indicators .active {
 background-color: blue;
@@ -35,7 +37,7 @@ body .no-padding{
 padding-left: 0,
 padding-right: 0;
 }
-</style>
+
 {%endblock%}
 
 
@@ -186,7 +188,16 @@ $('.divpr').on("click", "button.minus", function() {
     a = this.id.slice(7, );
     cart['pr' + a][0] = cart['pr' + a][0] - 1;
     cart['pr' + a][0] = Math.max(0, cart['pr' + a][0]);
+<!--    document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];-->
+    if(cart['pr' + a][0]==0)
+    {
+      document.getElementById('divpr' + a).innerHTML = '<button id="pr' +a+'" class="btn btn-primary cart">Add to Cart</button>'
+      delete cart['pr' + a];
+    }
+    else
+    {
     document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+    }
     updateCart(cart);
 });
 $('.divpr').on("click", "button.plus", function() {
