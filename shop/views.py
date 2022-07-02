@@ -60,8 +60,29 @@ def tracker(request):
 
     return render(request, "shop/tracker.html")
 
+def searchMatch(query,item):
+    '''return true if only querry matches the item'''
+    if query.lower() in item.desc.lower() or query.lower() in item.product_name.lower() or query.lower() in item.category.lower():
+        return True
+    else:
+        return False
+
+
 def search(request):
-    return render(request, "shop/search.html")
+    query=request.GET.get('search')
+    allProds = []
+    catprods = Product.objects.values('category', 'id')
+    cats = {item['category'] for item in catprods}
+    for cat in cats:
+        prodtemp = Product.objects.filter(category=cat)
+        prod = [item for item in prodtemp if searchMatch(query,item)]
+        n = len(prod)
+        nslides = n // 4 + ceil((n / 4) - (n // 4))
+        if len(prod) != 0:
+            allProds.append([prod, range(1, nslides), nslides])
+    msg = True
+    params = {'allprods': allProds,'msg':msg}
+    return render(request,"shop/index.html",params)
 
 def productView(request,myid):
     #Fetch the product using the id.
@@ -73,13 +94,14 @@ def checkout(request):
     if request.method=="POST":
         items_json=request.POST.get('itemsJson','')            #second argument is default value
         name=request.POST.get('name','')            #second argument is default value
+        amount=request.POST.get('amount','')            #second argument is default value
         email=request.POST.get('email','')
         address=request.POST.get('address1','') + ' ' + request.POST.get('address1','')
         city=request.POST.get('city','')
         state=request.POST.get('state','')
         zip_code=request.POST.get('zip_code','')
         phone=request.POST.get('phone','')            #second argument is default value
-        order=Orders(items_json=items_json,name=name,email=email,address=address,city=city,state=state,zip_code=zip_code,phone=phone)
+        order=Orders(items_json=items_json,name=name,email=email,address=address,city=city,state=state,zip_code=zip_code,phone=phone,amount=amount)
         order.save()
         update = OrderUpdate(order_id=order.order_id,update_desc="The order has been placed.")
         update.save()

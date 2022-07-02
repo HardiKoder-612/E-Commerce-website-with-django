@@ -46,7 +46,9 @@ padding-right: 0;
 
 <div class="container">
   <!--Slideshow starts here -->
-
+  {% if msg %}
+  <h2 class="my-4">Results of your search are below</h2>
+  {%endif%}
   {% for product,range,nSlides in allprods %}
   <h5 class="my-4">{{product.0.category}} -Recommended Items for U</h5>
   <div class="row">
